@@ -27,4 +27,30 @@
 * python manage.py runserver
     > django 시작
  
-## 
+## Django 파일 구조
+
+```
+D:.
+│  db.sqlite3
+│  manage.py
+│
+├─ChefBot
+│  │  settings.py   //Django 설정
+│  │  urls.py       //Django 접속 URL 설정
+│  │  wsgi.py
+│  │  __init__.py
+│  │
+│  └─__pycache__
+│
+└─home
+    │  admin.py
+    │  apps.py
+    │  models.py
+    │  tests.py
+    │  views.py     //Keyboard, Message 함수 View Page
+    │  __init__.py
+    │
+    ├─migrations
+    └─__pycache__
+
+```
