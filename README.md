@@ -54,3 +54,67 @@ D:.
     └─__pycache__
 
 ```
+
+## pythonanywhere.com에 Django 서버 만들기
+
+    $ git clone https://github.com/riyenas0925/my-first-blog.git
+> git clone 명령어를 이용해 가져오기
+> 
+    $ tree my-first-blog
+    my-first-blog/
+    │  db.sqlite3
+    │  manage.py
+    │
+    ├─ChefBot
+    │  │  settings.py   //Django 설정
+    │  │  urls.py       //Django 접속 URL 설정
+    │  │  wsgi.py
+    │  │  __init__.py
+    │  │
+    │  └─__pycache__
+    │
+    └─home
+        │  admin.py
+        │  apps.py
+        │  models.py
+        │  tests.py
+        │  views.py     //Keyboard, Message 함수 View Page
+        │  __init__.py
+        │
+        ├─migrations
+        └─__pycache__
+>
+    $ cd my-first-blog
+> my-first-blog 폴더로 이동
+>
+    $ virtualenv --python=python3.6 myvenv
+> 가상머신 설치
+>
+    Running virtualenv with interpreter /usr/bin/python3.6
+    [...]
+    Installing setuptools, pip...done.
+
+    $ source myvenv/bin/activate
+
+    (myvenv) $  pip install django~=1.11.0
+> Django 설치
+>
+    Collecting django
+    [...]
+    Successfully installed django-1.11.3
+
+> pythonanywhere web 설정
+> 
+    Code:
+    What your site is running.
+
+    Source code:
+    /home/riyenas0925/my-first-blog/ChefBot
+
+    Go to directory
+    Working directory:
+    /home/riyenas0925/my-first-blog
+
+    Go to directory
+    WSGI configuration file:/var/www/riyenas0925_pythonanywhere_com_wsgi.py
+    Python version:3.6
