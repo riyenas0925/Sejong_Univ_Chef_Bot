@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import JsonResponse
+from bs4 import BeautifulSoup
+import urllib.request
+import json
+import datetime
  
 # Create your views here.
 def keyboard(request):
@@ -15,12 +19,11 @@ def keyboard(request):
 def message(request):
     message = ((request.body).decode('utf-8'))
     return_json_str=json.loads(message)
-    return_str= return_json_str['content'] #버튼 항목중 무엇을 눌렀는가
-    today_date = datetime.date.today().strtime("%m월 %d일")
+    return_str= return_json_str['content'] #버튼 항목중 무엇을 눌렀는가'
 
     return JsonResponse({ #return 밑에는 공통어
         'message': {
-            'text': today_date + '의' + return_str + '메뉴입니다\n' + get_menu(return_str)
+            'text': return_str + '메뉴입니다. \n \n' + get_menu(return_str)
         },
         'keyboard': {
             'type' : 'buttons',
@@ -31,6 +34,33 @@ def message(request):
 
 def get_menu(cho):
     if cho == '학생회관':
-        'message':{
-            'text': '슨두부 3500'
-        }
+        return h_menu()
+
+def h_menu():
+    html = urllib.request.urlopen("http://m.sejong.ac.kr/front/cafeteria.do")
+    text = html.read().decode("utf8")
+
+    soup = BeautifulSoup(text, 'html.parser')
+
+    menu = soup.find_all('div',{'class':'th'})
+    price = soup.find_all('div',{'class':'td price'})
+
+    ##리스트 menu와 price에 쓰레기값 제거
+    for n in menu:
+        i = menu.index(n)
+        menu[i]= n.get_text()
+    for n in price:
+        i = price.index(n)
+        price[i]= n.get_text()
+
+    ##딕셔너리 생성
+    message={}
+    foodlist=""
+    dic={}
+
+    for i in range(0,len(menu)):
+        foodlist += menu[i]+" "+price[i]  +"\n"
+
+    dic["text"]=foodlist
+    message["message"]=dic
+    return(json.dumps(message,indent=2,ensure_ascii=False))
