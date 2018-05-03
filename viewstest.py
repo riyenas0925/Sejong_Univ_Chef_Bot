@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from bs4 import BeautifulSoup
 import urllib.request
 import json
@@ -31,13 +32,12 @@ def message(request):
         }
     })
 
-
 def get_menu(cho):
-    if cho == '학생회관':
-        return h_menu()
+    if cho == "학생회관":
+        h_menu("http://m.sejong.ac.kr/front/cafeteria.do")
 
-def h_menu():
-    html = urllib.request.urlopen("http://m.sejong.ac.kr/front/cafeteria.do")
+def h_menu(abc):
+    html = urllib.request.urlopen(abc)
     text = html.read().decode("utf8")
 
     soup = BeautifulSoup(text, 'html.parser')
@@ -53,14 +53,7 @@ def h_menu():
         i = price.index(n)
         price[i]= n.get_text()
 
-    ##딕셔너리 생성
-    message={}
     foodlist=""
-    dic={}
 
     for i in range(0,len(menu)):
-        foodlist += menu[i]+" "+price[i]  +"\n"
-
-    dic["text"]=foodlist
-    message["message"]=dic
-    return(json.dumps(message,indent=2,ensure_ascii=False))
+        foodlist += menu[i] +""+price[i]+"\n"
