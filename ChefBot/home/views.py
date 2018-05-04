@@ -103,10 +103,10 @@ def g_menu():
 
     def time(k):
         if k % 2 == 0:
-            return '중식'
+            return '<중식>'
 
         else:
-            return '석식'
+            return '<석식>'
 
     ##리스트 menu와 price에 쓰레기값 제거
     for n in day:
@@ -123,10 +123,10 @@ def g_menu():
 
     for i in range(0,12):
         if i % 2 == 0:
-            foodlist += '\n-----------\n\n' + day[cnt] + '\n\n' + time(i) + menu[i] + '\n'
+            foodlist += day[cnt] + '\n\n' + time(i) + menu[i]
             cnt += 1
 
         else:
-            foodlist += time(i) + menu[i]
+            foodlist += '\n' + time(i) + menu[i] + '\n---------------\n\n'
 
     return foodlist
