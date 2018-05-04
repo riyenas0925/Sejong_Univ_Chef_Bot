@@ -40,7 +40,7 @@ def friend(response):
 '''
 def get_menu(place):
     if place=='학생회관':
-        return "----------"+ h_menu()
+        return "----------\n"+ h_menu()
 
     elif place=='군자관':
         return "(ง˙∇˙)ว\n아직 준비 중..."
