@@ -22,13 +22,15 @@ def message(request):
     return_json_str = json.loads(message)
     return_str = return_json_str['content'] #버튼 항목중 무엇을 눌렀는가
     
-    def get_menu(place):
+    def get_menu(place):#변수return_Str를 써야하므로 함수message 안에 같이 넣어줌
         repeat="✧.◟(ˊᗨˋ)◞.✧\n" + date_s(return_str) + return_str + ' 메뉴다냥\n\n'+"---------------\n"
+        #repeat == 반복스트링
         if place=='학생회관':
             return repeat+h_menu()
 
         elif place=='군자관':
             return repeat+"(ง˙∇˙)ว\n아직 준비 중..."
+            #군자 파싱 함수 만들면 뒤에 이어주면 됨
 
         elif place=='우정당':
             return repeat+"(ง˙∇˙)ว\n아직 준비 중..."
@@ -53,7 +55,7 @@ def delete(response):
 
 def friend(response):
 '''
-def date_s(place):
+def date_s(place): #학생회관 클릭 -> 요일 출력 //이 외-> 출력x
     return_date = datetime.datetime.now().strftime("%m월 %d일 ")
     if place=='학생회관':
         return return_date +"\n"
