@@ -11,7 +11,7 @@ import datetime
 def keyboard(request):
     return JsonResponse({
         "keyboard": {
-            "type" : "text",
+            "type" : "buttons",
             "buttons" : ["학생회관","군자관","우정당","입력오류테스트"]
         },
         "message": {
