@@ -2,6 +2,10 @@
 
 ## 세종대학교 학식봇
 
+### 개발자
+* 인터페이스 30기 @riyenas0925
+* 인터페이스 30기 @2kyung19
+
 ## 장고 설치하기
 
 1. 장고 설치하고 프로젝트 만들기
@@ -26,6 +30,7 @@
 
 * python manage.py runserver
     > django 시작
+
  
 ## Django 파일 구조
 
@@ -55,7 +60,10 @@ D:.
 
 ```
 
-## pythonanywhere.com에 Django 서버 만들기
+## ~~pythonanywhere으로 Django 서버 구축하기~~ 
+### (현재 AWS 서버 사용중)
+
+> pythonanywhere.com은 손쉽게 Django 서버를 만들수 있다는 장점이 있었지만 무료계정은 외부 사이트에 접속을 못한다는 단점이 있어서 ㅠ AWS서버를 이용하기로 했습니다.
 
     $ git clone https://github.com/riyenas0925/my-first-blog.git
 > git clone 명령어를 이용해 가져오기
@@ -118,3 +126,25 @@ D:.
     Go to directory
     WSGI configuration file:/var/www/riyenas0925_pythonanywhere_com_wsgi.py
     Python version:3.6
+
+## AWS Django 서버 구축하기
+
+> 인스턴스 생성과 접속은 아래글 https://programmers.co.kr/learn/courses/6/lessons/629을 참고 하였습니다.
+
+1. Git, Django, bs4 설치
+>
+    $ sudo apt-get update
+    $ sudo apt-get install git
+    $ sudo apt-get install python3-pip
+    $ sudo pip3 install django
+    $ sudo pip3 install bs4
+
+2. Git에서 리포지토리 가져오기
+>
+    $ git clone <git 주소>
+    $ manage.py가 있는 디렉토리로 이동
+    $ python3 manage.py runserver 0.0.0.0:8000
+
+3. 브라우저 접속
+>
+    브라우저에서 EC2 - Running instances - Public DNS뒤에 :8000붙인 주소로 접속

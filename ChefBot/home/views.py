@@ -33,6 +33,11 @@ def message(request):
         }
     })
 
+'''
+def delete(response):
+
+def friend(response):
+'''
 
 def h_menu():
 
