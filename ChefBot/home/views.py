@@ -25,7 +25,7 @@ def message(request):
 
     return JsonResponse({ #return 밑에는 공통어
         "message": {
-            "text": return_date + return_str + '메뉴입니다. \n\n' + h_menu()
+            "text": return_date + return_str + '메뉴입니다. \n\n' + h_menu() + 이다냥~
         },
         "keyboard": {
             "type" : "buttons",
