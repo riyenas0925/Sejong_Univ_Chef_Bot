@@ -121,7 +121,7 @@ def g_menu():
             cnt += 1
 
         else:
-            foodlist += '\n' + time(i) + menu[i] + '\n---------------\n\n'
+            foodlist += '\n' +'---------------\n'+time(i)+'\n---------------\n'+ menu[i]
     
     return foodlist
 
@@ -146,7 +146,7 @@ def u_menu():
         for n in day:
             day_f=n.find_all('div',{'class':'td'})
     
-            a=day_f[0].get_text().replace("\t","").replace("\r","").replace("\n\n","")
+            a=day_f[0].get_text().replace("\t","").replace("\r","")
             food.append(a)
 
         
@@ -159,7 +159,7 @@ def u_menu():
 
     printlist=""
     for i in range(0,5):
-        printlist+="-------------\n"+day_d[i]+"\n-------------"+"\n<프리미엄>\n"+food[5*i]+"\n<일품>\n"+food[5*i+1]+"\n<양식>\n"+food[5*i+2]+"\n<한식>\n"+food[5*i+3]+"\n<분식>\n"+food[5*i+4]
+        printlist+="-------------\n"+day_d[i]+"\n-------------"+"\n<프리미엄>"+food[5*i]+"\n<일품>"+food[5*i+1]+"\n<양식>"+food[5*i+2]+"\n<한식>"+food[5*i+3]+"\n<분식>"+food[5*i+4]
         #0~4 월 5~9 화 10~14 수 15~19 목 20~24 금 25~29 토
         #프리미엄 +0 일품+1 양식+2 한식+3 분식+4
         #시작 5*i
