@@ -25,17 +25,17 @@ for n in day:
 
 for n in menu:
     i = menu.index(n)
-    menu[i]= n.get_text().replace("\t","").replace("\r","")
+    menu[i]= n.get_text().replace("\t","").replace("\r","").replace("\n\n\n"," ").replace("\n\n"," ").replace("\n"," ").replace(" ","\n").replace("\n\n\n\n\n\n\n\n\n\n\n\n\n\n","")
 
 foodlist=""
 cnt = 0
 
 for i in range(0,12):
     if i % 2 == 0:
-        foodlist += '\n-----------\n' + day[cnt] + '\n' + time(i) + '\n' + menu[i] + '\n\n'
+        foodlist += '\n-----------\n\n' + day[cnt] + '\n\n' + time(i) + menu[i] + '\n'
         cnt += 1
 
     else:
-        foodlist += time(i) + '\n' + menu[i] + '\n'
+        foodlist += time(i) + menu[i]
 
-print(menu)
+print(foodlist)
