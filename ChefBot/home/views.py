@@ -23,7 +23,7 @@ def message(request):
     return_str = return_json_str['content'] #버튼 항목중 무엇을 눌렀는가
     
     def get_menu(place):#변수return_Str를 써야하므로 함수message 안에 같이 넣어줌
-        repeat="✧.◟(ˊᗨˋ)◞.✧\n" + date_s(return_str) + return_str + ' 메뉴다냥\n\n'+"---------------\n"
+        repeat="✧.◟(ˊᗨˋ)◞.✧\n" + date_s(return_str) + return_str + ' 메뉴다냥\n\n'
         #repeat == 반복스트링
         if place=='학생회관':
             return repeat+h_menu()
@@ -33,7 +33,7 @@ def message(request):
             #군자 파싱 함수 만들면 뒤에 이어주면 됨
 
         elif place=='우정당':
-            return repeat+"(ง˙∇˙)ว\n아직 준비 중..."
+            return repeat+u_menu()
 
         else:
             return "٩(๑`^´๑)۶\n잘못입력했다냥!\n다시 입력하라냥!\n\n명령어\n*학생회관\n*군자관\n*우정당\n*미세먼지\n*날씨\n*지하철\n*공지사항" #사용자입력오류
@@ -124,3 +124,50 @@ def g_menu():
             foodlist += '\n' + time(i) + menu[i] + '\n---------------\n\n'
     
     return foodlist
+
+
+
+def u_menu():
+    req = urllib.request.Request("http://m.sejong.ac.kr/front/cafeteria.do?type1=2", headers={'User-Agent': 'Mozilla/5.0'})
+    con = urllib.request.urlopen(req)
+    text = con.read().decode("utf8")
+
+    soup = BeautifulSoup(text, 'html.parser')
+
+    food=[]
+    day_d=[]
+
+    def parsing(seq):
+        day = soup.find_all('tr',{'class':seq})
+        a=day[0].find_all('div',{'class':'th'})
+        b = a[0].get_text()
+        day_d.append(b)
+    
+        for n in day:
+            day_f=n.find_all('div',{'class':'td'})
+    
+            a=day_f[0].get_text().replace("\t","").replace("\r","").replace("\n\n","")
+            food.append(a)
+
+        
+    parsing("seq-01")
+    day_f=[]
+    parsing("seq-02")
+    day_f=[]               
+    parsing("seq-03")
+    day_f=[]
+    parsing("seq-04")
+    day_f=[]
+    parsing("seq-05")
+    day_f=[]
+    parsing("seq-06")
+
+    for i in range(0,5):
+        print ("-------------")
+        print (day_d[i])
+        print ("-------------")
+        print ("<프리미엄>\n",food[5*i])
+        print ("<일품>\n",food[5*i+1])
+        print ("<양식>\n",food[5*i+2])  #0~4 월 5~9 화 10~14 수 15~19 목 20~24 금 25~29 토
+        print ("<한식>\n",food[5*i+3])  #프리미엄 +0 일품+1 양식+2 한식+3 분식+4
+        print ("<분식>\n",food[5*i+4])  #시작 5*i
