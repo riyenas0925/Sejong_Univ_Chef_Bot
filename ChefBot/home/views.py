@@ -12,7 +12,7 @@ def keyboard(request):
     return JsonResponse(
         {
             "type" : "buttons",
-            "buttons" : ["학생회관","진관홀","우정당","군자관"]
+            "buttons" : ["학생회관","군자관","우정당"]
         }
     )
 
@@ -20,16 +20,17 @@ def keyboard(request):
 def message(request):
     message = ((request.body).decode('utf-8'))
     return_json_str = json.loads(message)
-    return_str = return_json_str['content'] #버튼 항목중 무엇을 눌렀는가'
+    return_str = return_json_str['content'] #버튼 항목중 무엇을 눌렀는가
     return_date = datetime.datetime.now().strftime("%m월 %d일 ")
+    repeat = "✧.◟(ˊᗨˋ)◞.✧\n"+return_date+"\n"+ return_str + '메뉴다냥\n\n' 
 
     return JsonResponse({ #return 밑에는 공통어
         "message": {
-            "text": return_date + return_str + '메뉴다냥(>3<)7. \n\n' + h_menu() + '이다냥~'
+            "text": get_menu(return_str)
         },
         "keyboard": {
             "type" : "buttons",
-            "buttons" : ["학생회관","진관홀","우정당","군자관"]
+            "buttons" : ["학생회관","군자관","우정당"]
         }
     })
 
@@ -38,6 +39,18 @@ def delete(response):
 
 def friend(response):
 '''
+def get_menu(place):
+    if place=='학생회관':
+        return repeat + h_menu()
+
+    elif place=='군자관':
+        #return repeat+함수()
+
+    elif place=='우정당':
+        #return repeat+함수()
+
+    else:
+        return "٩(๑`^´๑)۶\n잘못입력했다냥!\n다시 입력하라냥!" #사용자 입력 오류
 
 def h_menu():
 
