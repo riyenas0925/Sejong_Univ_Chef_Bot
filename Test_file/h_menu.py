@@ -1,8 +1,6 @@
 from bs4 import BeautifulSoup
 import urllib.request
 
-return_str = '우정당'
-
 req = urllib.request.Request("http://m.sejong.ac.kr/front/cafeteria.do", headers={'User-Agent': 'Mozilla/5.0'})
 response = urllib.request.urlopen(req)
 text = response.read().decode("utf8")
@@ -29,4 +27,3 @@ for i in range(0,len(menu)):
     foodlist += menu[i] +""+price[i]+"\n"
 
 print(foodlist)
-print(urllib.urlopen(url).getcode())
