@@ -25,7 +25,7 @@ def message(request):
 
     return JsonResponse({ #return 밑에는 공통어
         "message": {
-            "text": "✧.◟(ˊᗨˋ)◞.✧\n" + return_date + "\n" + return_str + '메뉴다냥\n\n'+get_menu(return_str)
+            "text": "✧.◟(ˊᗨˋ)◞.✧\n" + return_date + "\n" + return_str + '메뉴다냥\n\n'+"---------------\n"+get_menu(return_str)
         },
         "keyboard": {
             "type" : "buttons",
@@ -40,7 +40,7 @@ def friend(response):
 '''
 def get_menu(place):
     if place=='학생회관':
-        return "----------\n"+ h_menu()
+        return  h_menu()
 
     elif place=='군자관':
         return "(ง˙∇˙)ว\n아직 준비 중..."
@@ -72,6 +72,6 @@ def h_menu():
     foodlist=""
 
     for i in range(0,len(menu)):
-        foodlist += menu[i] + "" + price[i] + "\n"
+        foodlist += menu[i] + "\t\t" + price[i] + "\n"
 
     return foodlist
