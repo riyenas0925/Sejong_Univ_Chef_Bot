@@ -151,23 +151,17 @@ def u_menu():
 
         
     parsing("seq-01")
-    day_f=[]
-    parsing("seq-02")
-    day_f=[]               
+    parsing("seq-02")          
     parsing("seq-03")
-    day_f=[]
     parsing("seq-04")
-    day_f=[]
     parsing("seq-05")
-    day_f=[]
     parsing("seq-06")
 
+    printlist=""
     for i in range(0,5):
-        print ("-------------")
-        print (day_d[i])
-        print ("-------------")
-        print ("<프리미엄>\n",food[5*i])
-        print ("<일품>\n",food[5*i+1])
-        print ("<양식>\n",food[5*i+2])  #0~4 월 5~9 화 10~14 수 15~19 목 20~24 금 25~29 토
-        print ("<한식>\n",food[5*i+3])  #프리미엄 +0 일품+1 양식+2 한식+3 분식+4
-        print ("<분식>\n",food[5*i+4])  #시작 5*i
+        printlist+="-------------\n"+day_d[i]+"\n-------------"+"\n<프리미엄>\n"+food[5*i]+"\n<일품>\n"+food[5*i+1]+"\n<양식>\n"+food[5*i+2]+"\n<한식>\n"+food[5*i+3]+"\n<분식>\n"+food[5*i+4]
+        #0~4 월 5~9 화 10~14 수 15~19 목 20~24 금 25~29 토
+        #프리미엄 +0 일품+1 양식+2 한식+3 분식+4
+        #시작 5*i
+
+    return printlist
