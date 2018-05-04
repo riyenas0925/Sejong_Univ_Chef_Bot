@@ -13,6 +13,10 @@ def keyboard(request):
         "message": {
             "text": "무엇이 알고 싶다냥?\n<!--명령어-->*\n*우정당\n*군자관\n*학생회관\n*미세먼지\n*날씨\n*지하철\n"
         }
+        "keyboard": {
+            "type" : "buttons",
+            "buttons" : ["선택 1", "선택 2", "선택 3"]
+        }   
     })
 
 @csrf_exempt
@@ -83,23 +87,23 @@ def h_menu():
 
     return foodlist
 
-def g_menu():
+def_g_menu():
 
-    req = urllib.request.Request("http://m.sejong.ac.kr/front/cafeteria.do?type1=3", headers={'User-Agent': 'Mozilla/5.0'})
-    response = urllib.request.urlopen(req)
-    text = response.read().decode("utf8")
+req = urllib.request.Request("http://m.sejong.ac.kr/front/cafeteria.do?type1=3", headers={'User-Agent': 'Mozilla/5.0'})
+response = urllib.request.urlopen(req)
+text = response.read().decode("utf8")
 
-    soup = BeautifulSoup(text, 'html.parser')
+soup = BeautifulSoup(text, 'html.parser')
 
-    day = soup.find_all("th",{'rowspan':'2'})
-    menu = soup.find_all('div',{'class':'td'})
+day = soup.find_all("th",{'rowspan':'2'})
+menu = soup.find_all('div',{'class':'td'})
 
-    def time(k):
+def time(k):
         if k % 2 == 0:
-            return '<중식>'
+            return '중식'
 
         else:
-            return '<석식>'
+            return '석식'
 
     ##리스트 menu와 price에 쓰레기값 제거
     for n in day:
@@ -116,10 +120,10 @@ def g_menu():
 
     for i in range(0,12):
         if i % 2 == 0:
-            foodlist += day[cnt] + '\n\n' + time(i) + menu[i]
+            foodlist += '\n-----------\n\n' + day[cnt] + '\n\n' + time(i) + menu[i] + '\n'
             cnt += 1
 
         else:
-            foodlist += '\n' + time(i) + menu[i] + '\n---------------\n\n'
+            foodlist += time(i) + menu[i]
 
-    return foodlist
+print(foodlist)
