@@ -72,6 +72,6 @@ def h_menu():
     foodlist=""
 
     for i in range(0,len(menu)):
-        foodlist += menu[i] + "\t\t" + price[i] + "\n"
+        foodlist += menu[i] + "  " + price[i] + "\n"
 
     return foodlist
