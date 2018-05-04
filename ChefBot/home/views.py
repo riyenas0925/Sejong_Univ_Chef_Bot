@@ -121,7 +121,7 @@ def g_menu():
             cnt += 1
 
         else:
-            foodlist += '\n' +'---------------\n'+time(i)+'\n---------------\n'+ menu[i]
+            foodlist += '\n' + time(i) + menu[i] + '\n---------------\n\n'
     
     return foodlist
 
