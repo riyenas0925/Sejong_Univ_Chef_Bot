@@ -12,7 +12,7 @@ def keyboard(request):
     return JsonResponse(
         {
             "type" : "buttons",
-            "buttons" : ["선택 1", "선택 2", "선택 3"]
+            "buttons" : ["학생회관", "군자관", "우정당", "입력오류테스트"]
         }   
     )
 
@@ -84,23 +84,23 @@ def h_menu():
 
     return foodlist
 
-def_g_menu():
+def g_menu():
 
-req = urllib.request.Request("http://m.sejong.ac.kr/front/cafeteria.do?type1=3", headers={'User-Agent': 'Mozilla/5.0'})
-response = urllib.request.urlopen(req)
-text = response.read().decode("utf8")
+    req = urllib.request.Request("http://m.sejong.ac.kr/front/cafeteria.do?type1=3", headers={'User-Agent': 'Mozilla/5.0'})
+    response = urllib.request.urlopen(req)
+    text = response.read().decode("utf8")
 
-soup = BeautifulSoup(text, 'html.parser')
+    soup = BeautifulSoup(text, 'html.parser')
 
-day = soup.find_all("th",{'rowspan':'2'})
-menu = soup.find_all('div',{'class':'td'})
+    day = soup.find_all("th",{'rowspan':'2'})
+    menu = soup.find_all('div',{'class':'td'})
 
-def time(k):
-        if k % 2 == 0:
-            return '중식'
+    def time(k):
+            if k % 2 == 0:
+                return '중식'
 
-        else:
-            return '석식'
+            else:
+                return '석식'
 
     ##리스트 menu와 price에 쓰레기값 제거
     for n in day:
@@ -122,5 +122,5 @@ def time(k):
 
         else:
             foodlist += time(i) + menu[i]
-
-print(foodlist)
+    
+    return foodlist
