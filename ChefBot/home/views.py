@@ -90,7 +90,7 @@ def h_menu():
 
     return foodlist
 
-def_g_menu():
+def g_menu():
 
     req = urllib.request.Request("http://m.sejong.ac.kr/front/cafeteria.do?type1=3", headers={'User-Agent': 'Mozilla/5.0'})
     response = urllib.request.urlopen(req)
