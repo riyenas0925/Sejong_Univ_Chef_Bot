@@ -31,28 +31,30 @@
 * python manage.py runserver
     > django 시작
 
+* python manage.py startapp home
+
  
 ## Django 파일 구조
 
 ```
-D:.
+ChefBot:            //프로젝트 폴더
 │  db.sqlite3
 │  manage.py
 │
-├─ChefBot
-│  │  settings.py   //Django 설정
-│  │  urls.py       //Django 접속 URL 설정
+├─ChefBot           //프로젝트의 기본적인 설정 폴더
+│  │  settings.py   //Django 설정 세팅
+│  │  urls.py       //서버에 요청이 들어오면 누가 처리하는지 정하는 부분
 │  │  wsgi.py
 │  │  __init__.py
 │  │
 │  └─__pycache__
 │
-└─home
+└─home              //app 폴더
     │  admin.py
     │  apps.py
     │  models.py
     │  tests.py
-    │  views.py     //Keyboard, Message 함수 View Page
+    │  views.py     //Keyboard, Message, delete, friend 함수 View Page
     │  __init__.py
     │
     ├─migrations
