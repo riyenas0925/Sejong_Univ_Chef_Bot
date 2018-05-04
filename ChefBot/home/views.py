@@ -11,9 +11,6 @@ import datetime
 def keyboard(request):
     return JsonResponse(
         {
-            "message": {
-            "text": "✧*｡٩(ˊᗜˋ*)و✧*｡\n안냥!\n오늘의 학식이 궁금하다면\n원하는 장소를 고르라냥!"
-        },
             "type" : "buttons",
             "buttons" : ["학생회관","군자관","우정당","입력오류테스트"]
         }
