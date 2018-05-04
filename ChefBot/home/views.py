@@ -36,7 +36,7 @@ def message(request):
             return repeat+"(ง˙∇˙)ว\n아직 준비 중..."
 
         else:
-            return "٩(๑`^´๑)۶\n잘못입력했다냥!\n다시 입력하라냥!\n<!--명령어-->\n*학생회관\n군자관\n*우정당\n*미세먼지\n*날씨\n*지하철\n" #사용자입력오류
+            return "٩(๑`^´๑)۶\n잘못입력했다냥!\n다시 입력하라냥!\n\n명령어\n*학생회관\n*군자관\n*우정당\n*미세먼지\n*날씨\n*지하철\n*공지사항" #사용자입력오류
 
     return JsonResponse({ #return 밑에는 공통어
         "message": {
