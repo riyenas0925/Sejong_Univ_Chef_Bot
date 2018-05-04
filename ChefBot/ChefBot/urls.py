@@ -21,6 +21,4 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^keyboard', views.keyboard),
     url(r'^message', views.message),
-    url(r'^delete', views.delete),
-    url(r'^friend', views.friend),
 ]
