@@ -96,11 +96,11 @@ def g_menu():
     menu = soup.find_all('div',{'class':'td'})
 
     def time(k):
-    if k % 2 == 0:
-        return '<중식>'
+        if k % 2 == 0:
+            return '<중식>'
 
-    else:
-        return '<석식>'
+        else:
+            return '<석식>'
 
     ##리스트 menu와 price에 쓰레기값 제거
     for n in day:
