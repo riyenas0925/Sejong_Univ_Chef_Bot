@@ -41,16 +41,16 @@ def friend(response):
 '''
 def get_menu(place):
     if place=='학생회관':
-        return repeat + h_menu()
+        return repeat +"----------"+ h_menu()
 
     elif place=='군자관':
-        #return repeat+함수()
+        return repeat #+함수()
 
     elif place=='우정당':
-        #return repeat+함수()
+        return repeat #+함수()
 
     else:
-        return "٩(๑`^´๑)۶\n잘못입력했다냥!\n다시 입력하라냥!" #사용자 입력 오류
+        return "٩(๑`^´๑)۶\n잘못입력했다냥!\n다시 입력하라냥!" #사용자입력오류
 
 def h_menu():
 
