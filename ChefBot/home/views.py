@@ -36,6 +36,7 @@ def message(request):
 
         elif place=='우정당':
             return repeat+"(ง˙∇˙)ว\n아직 준비 중..."
+
         else:
             return "٩(๑`^´๑)۶\n잘못입력했다냥!\n다시 입력하라냥!" #사용자입력오류
 
@@ -44,8 +45,7 @@ def message(request):
             "text": get_menu(return_str)
         },
         "keyboard": {
-            "type" : "buttons",
-            "buttons" : ["학생회관","군자관","우정당","입력오류테스트"]
+            "type" : "text",
         }
     })
 
