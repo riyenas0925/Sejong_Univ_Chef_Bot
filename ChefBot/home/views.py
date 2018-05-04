@@ -21,16 +21,31 @@ def message(request):
     message = ((request.body).decode('utf-8'))
     return_json_str = json.loads(message)
     return_str = return_json_str['content'] #버튼 항목중 무엇을 눌렀는가
-    return_date = datetime.datetime.now().strftime("%m월 %d일 ") 
+    
+    def get_menu(place):
+        repeat="✧.◟(ˊᗨˋ)◞.✧\n" + date_s(return_str) + return_str + ' 메뉴다냥\n\n'+"---------------\n"
+        if place=='학생회관':
+            return repeat+h_menu()
+
+        elif place=='군자관':
+            return repeat+"(ง˙∇˙)ว\n아직 준비 중..."
+
+        elif place=='우정당':
+            return repeat+"(ง˙∇˙)ว\n아직 준비 중..."
+        else:
+            return "٩(๑`^´๑)۶\n잘못입력했다냥!\n다시 입력하라냥!" #사용자입력오류
 
     return JsonResponse({ #return 밑에는 공통어
         "message": {
-            "text": "✧.◟(ˊᗨˋ)◞.✧\n" + return_date + "\n" + return_str + '메뉴다냥\n\n'+"---------------\n"+get_menu(return_str)
+            "text": get_menu(return_str)
         },
         "keyboard": {
             "type" : "buttons",
             "buttons" : ["학생회관","군자관","우정당"]
         }
+
+    
+
     })
 
 '''
@@ -38,15 +53,12 @@ def delete(response):
 
 def friend(response):
 '''
-def get_menu(place):
+def date_s(place):
+    return_date = datetime.datetime.now().strftime("%m월 %d일 ")
     if place=='학생회관':
-        return  h_menu()
-
-    elif place=='군자관':
-        return "(ง˙∇˙)ว\n아직 준비 중..."
-
-    elif place=='우정당':
-        return "(ง˙∇˙)ว\n아직 준비 중..."
+        return return_date +"\n"
+    else:
+        return ""
 
 def h_menu():
 
