@@ -154,7 +154,7 @@ def g_menu(type):
 
     foodlist_all = foodlist_day[0] + foodlist_day[1] + foodlist_day[2] + foodlist_day[3] + foodlist_day[4]
 
-    if (type == '군자관 월)':
+    if type == '군자관 월':
         return foodlist_day[0]
 
     elif type == '군자관 화':
