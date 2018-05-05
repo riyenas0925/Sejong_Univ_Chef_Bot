@@ -34,7 +34,12 @@ def message(request):
             #군자 파싱 함수 만들면 뒤에 이어주면 됨
 
         elif place=='우정당':
-            return "✧.◟(ˊᗨˋ)◞.✧\n요일을 선택하라냥!\nex)월요일 또는 월\n"+u_menu()
+            return JsonResponse({ #return 밑에는 공통어
+                "message": {
+                "text": "✧.◟(ˊᗨˋ)◞.✧\n요일을 선택하라냥!\nex)월요일 또는 월\n"
+                },
+                "keyboard":["월","화","수","목","금","토"]
+            })
 
         elif place=='날씨':
             return "✧*｡٩(ˊᗜˋ*)و✧*｡ \n" + '우리집 날씨다냥\n'+ weather()
@@ -171,13 +176,7 @@ def u_menu():
         #0~4 월 5~9 화 10~14 수 15~19 목 20~24 금 25~29 토
         #프리미엄 +0 일품+1 양식+2 한식+3 분식+4
         #시작 5*i
-
-    return JsonResponse({ #return 밑에는 공통어
-        "message": {
-            "text": printlist
-        },
-        "keyboard":["월","화","수","목","금","토"]
-    })
+    return printlist
 
 
 def weather():
