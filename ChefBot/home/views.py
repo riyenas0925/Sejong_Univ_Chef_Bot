@@ -36,7 +36,7 @@ def message(request):
             return repeat+u_menu()
 
         elif place=='날씨':
-            return "✧.◟(ˊᗨˋ)◞.✧\n" + '날씨다냥'+weather()
+            return "✧.◟(ˊᗨˋ)◞.✧\n" + '날씨다냥'+ weather()
 
         else:
             return "٩(๑`^´๑)۶\n잘못입력했다냥!\n다시 입력하라냥!\n\n명령어\n*학생회관\n*군자관\n*우정당\n*미세먼지\n*날씨\n*지하철\n*공지사항" #사용자입력오류
@@ -170,11 +170,17 @@ def u_menu():
     return printlist
 
 def weather():
-
-    params = {"version": "1", "city":"서울", "county":"강남구","village":"도곡동"}
+    params = {"version": "1", "city":"서울", "county":"광진구","village":"군자동"}
     headers = {"appKey": "ea6c12af-2d3c-4572-a9a9-30d42a9742d4"}
-    r = requests.get("	https://api2.sktelecom.com/weather/current/minutely", params=params, headers=headers)
+    response = requests.get("https://api2.sktelecom.com/weather/current/minutely", params=params, headers=headers)
 
-    data = json.loads(r.text)
+    data = json.loads(response.text)
 
-    return data
+    weather = data["weather"]["ㅙㅕ"]
+    sky = weather[0]["sky"]["name"]
+    wind = weather[0]["wind"]["wspd"]
+    time = weather[0]["timeObservation"]
+
+    printweather = '날씨 : ' + Sky + '\n' + '풍속 : ' + Wind + 'm/s'
+
+    return printweather

@@ -1,0 +1,57 @@
+{
+    'weather': {
+        'minutely': [{
+            'precipitation': {
+                'sinceOntime': '0.00',
+                'type': '0'
+            },
+            'sky': {
+                'code': 'SKY_A07',
+                'name': '흐림'
+            },
+            'rain': {
+                'sinceOntime': '0.00',
+                'last30min': '0.00',
+                'last1hour': '0.00',
+                'last6hour': '0.00',
+                'last12hour': '0.00',
+                'last24hour': '0.00',
+                'sinceMidnight': '0.00',
+                'last10min': '0.00',
+                'last15min': '0.00'
+            },
+            'temperature': {
+                'tc': '23.90',
+                'tmax': '24.00',
+                'tmin': '12.00'
+            },
+            'humidity': '',
+            'pressure': {
+                'surface': '',
+                'seaLevel': ''
+            },
+            'lightning': '0',
+            'timeObservation': '2018-05-05 16:50:00',
+            'station': {
+                'latitude': '37.48891',
+                'longitude': '127.01562',
+                'name': '서초',
+                'id': '401',
+                'type': 'KMA'
+            },
+            'wind': {
+                'wdir': '155.80',
+                'wspd': '2.20'
+            }
+        }]
+    },
+    'common': {
+        'alertYn': 'Y',
+        'stormYn': 'N'
+    },
+    'result': {
+        'code': 9200,
+        'requestUrl': '/weather/current/minutely?version=1&city=서울&county=강남구&village=도곡동',
+        'message': '성공'
+    }
+}
