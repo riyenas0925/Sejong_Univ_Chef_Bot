@@ -29,16 +29,19 @@ def message(request):
         if place=='학생회관':
             return repeat+h_menu()
 
-        elif -1 != place.find('군자관'):
+        elif place.find('군자관') != -1:
             return repeat+g_menu(return_str)
             #군자 파싱 함수 만들면 뒤에 이어주면 됨
 
-        elif place=='우정당':
+        elif place.find('우정당') != -1:
             return JsonResponse({ #return 밑에는 공통어
                 "message": {
                 "text": "✧.◟(ˊᗨˋ)◞.✧\n요일을 선택하라냥!\nex)월요일 또는 월\n"
                 },
-                "keyboard":["월","화","수","목","금","토"]
+                "keyboard":{
+                    "type" : "buttons",
+                    "buttons" : ["월","화","수","목","금","토"]
+                }
             })
 
         elif place=='날씨':
