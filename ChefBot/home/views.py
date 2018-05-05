@@ -29,7 +29,7 @@ def message(request):
         if place=='학생회관':
             return repeat+h_menu()
 
-        elif place=='군자관':
+        elif -1 != place.find('군자관'):
             return repeat+g_menu(return_str)
             #군자 파싱 함수 만들면 뒤에 이어주면 됨
 
