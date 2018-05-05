@@ -60,10 +60,17 @@ def message(request):
                 }
             })
 
+        elif place == '개발자':
+            return JsonResponse({ #return 밑에는 공통어
+                "message": {
+                    "text": '✧*｡٩(ˊᗜˋ*)و✧*｡ \n' + '우리집 날씨다냥\n'+ weather()
+                }
+            })
+
         else:
             return JsonResponse({ #return 밑에는 공통어
                 "message": {
-                    "text": "٩(๑`^´๑)۶\n잘못입력했다냥!\n다시 입력하라냥!\n\n명령어\n*학생회관\n*군자관\n*우정당\n*미세먼지\n*날씨\n*지하철\n*공지사항"
+                    "text": "인터페이스 30기 @riyenas0925\n인터페이스 30기 @2kyung19"
                 }
             })
              #사용자입력오류
