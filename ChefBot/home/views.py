@@ -180,8 +180,9 @@ def weather():
     weather = data["weather"]["minutely"]
     sky = weather[0]["sky"]["name"]
     wind = weather[0]["wind"]["wspd"]
+    temp = weather[0]["temperature"]["tc"]
     time = weather[0]["timeObservation"]
 
-    printweather = '날씨 : ' + sky + '\n' + '풍속 : ' + wind + 'm/s'
+    printweather = '하늘 : ' + sky + '\n' + '온도 : ' + temp + 'C\n' + '풍속 : ' + wind + 'm/s'
 
     return printweather
