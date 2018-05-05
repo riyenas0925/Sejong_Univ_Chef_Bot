@@ -12,7 +12,7 @@ def keyboard(request):
     return JsonResponse(
         {
             "type" : "buttons",
-            "buttons" : ["학생회관", "군자관", "우정당", "입력오류테스트"]
+            "buttons" : ["학생회관", "군자관", "우정당","날씨", "입력오류테스트"]
         }   
     )
 
@@ -34,6 +34,9 @@ def message(request):
 
         elif place=='우정당':
             return repeat+u_menu()
+
+        elif place=='날씨':
+            return "✧.◟(ˊᗨˋ)◞.✧\n" + '날씨다냥'+weather()
 
         else:
             return "٩(๑`^´๑)۶\n잘못입력했다냥!\n다시 입력하라냥!\n\n명령어\n*학생회관\n*군자관\n*우정당\n*미세먼지\n*날씨\n*지하철\n*공지사항" #사용자입력오류
@@ -165,3 +168,13 @@ def u_menu():
         #시작 5*i
 
     return printlist
+
+def weather():
+
+    params = {"version": "1", "city":"서울", "county":"강남구","village":"도곡동"}
+    headers = {"appKey": "ea6c12af-2d3c-4572-a9a9-30d42a9742d4"}
+    r = requests.get("	https://api2.sktelecom.com/weather/current/minutely", params=params, headers=headers)
+
+    data = json.loads(r.text)
+
+    return data
