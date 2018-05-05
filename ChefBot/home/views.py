@@ -22,52 +22,54 @@ def message(request):
     message = ((request.body).decode('utf-8'))
     return_json_str = json.loads(message)
     return_str = return_json_str['content'] #버튼 항목중 무엇을 눌렀는가
+    
+    def get_menu(place):#변수return_Str를 써야하므로 함수message 안에 같이 넣어줌
+        repeat="✧.◟(ˊᗨˋ)◞.✧\n" + date_s(return_str) + return_str + ' 메뉴다냥\n\n'
+        #repeat == 반복스트링
 
-    repeat="✧.◟(ˊᗨˋ)◞.✧\n" + date_s(return_str) + return_str + ' 메뉴다냥\n\n'
-    #repeat == 반복스트링
+        if place.find('학생회관') != -1:
+            return JsonResponse({ #return 밑에는 공통어
+                "message": {
+                    "text": repeat+h_menu()
+                }
+            })
 
-    if place.find('학생회관') != -1:
-        return JsonResponse({ #return 밑에는 공통어
-            "message": {
-                "text": repeat+h_menu()
-            }
-        }) 
+        elif place.find('군자관') != -1:
+            return JsonResponse({ #return 밑에는 공통어
+                "message": {
+                    "text": repeat+g_menu(return_str)
+                }
+            }) 
+            #군자 파싱 함수 만들면 뒤에 이어주면 됨
 
+        elif place.find('우정당') != -1:
+            return JsonResponse({ #return 밑에는 공통어
+                "message": {
+                    "text": "✧.◟(ˊᗨˋ)◞.✧\n요일을 선택하라냥!\nex)월요일 또는 월\n"
+                },
+                "keyboard":{
+                    "type" : "buttons",
+                    "buttons" : ["우정당 월","우정당 화","우정당 수","우정당 목","우정당 금"]
+                }
+            })
 
-    elif place.find('군자관') != -1:
-        return JsonResponse({ #return 밑에는 공통어
-            "message": {
-                "text": repeat+g_menu(return_str)
-            }
-        }) 
-        #군자 파싱 함수 만들면 뒤에 이어주면 됨
+        elif place.find('날씨') != -1:
+            
+            return JsonResponse({ #return 밑에는 공통어
+                "message": {
+                    "text": '✧*｡٩(ˊᗜˋ*)و✧*｡ \n' + '우리집 날씨다냥\n'+ weather()
+                }
+            })
 
-    elif place.find('우정당') != -1:
-        return JsonResponse({ #return 밑에는 공통어
-            "message": {
-                "text": "✧.◟(ˊᗨˋ)◞.✧\n요일을 선택하라냥!\nex)월요일 또는 월\n"
-            },
-            "keyboard":{
-                "type" : "buttons",
-                "buttons" : ["우정당 월","우정당 화","우정당 수","우정당 목","우정당 금"]
-            }
-        })
+        else:
+            return JsonResponse({ #return 밑에는 공통어
+                "message": {
+                    "text": "٩(๑`^´๑)۶\n잘못입력했다냥!\n다시 입력하라냥!\n\n명령어\n*학생회관\n*군자관\n*우정당\n*미세먼지\n*날씨\n*지하철\n*공지사항"
+                }
+            })
+             #사용자입력오류
 
-    elif place.find('날씨') != -1:
-        
-        return JsonResponse({ #return 밑에는 공통어
-            "message": {
-                "text": '✧*｡٩(ˊᗜˋ*)و✧*｡ \n' + '우리집 날씨다냥\n'+ weather()
-            }
-        })
-
-    else:
-        return JsonResponse({ #return 밑에는 공통어
-            "message": {
-                "text": "٩(๑`^´๑)۶\n잘못입력했다냥!\n다시 입력하라냥!\n\n명령어\n*학생회관\n*군자관\n*우정당\n*미세먼지\n*날씨\n*지하철\n*공지사항"
-            }
-        })
-        #사용자입력오류
+    return get_menu(return_str)
 
 '''
 def delete(response):
