@@ -113,9 +113,9 @@ def h_menu():
     foodlist=""
 
     for i in range(0,len(menu)):
-        foodlist += menu[i] + "  " + price[i] + "\n"
+        foodlist += '\n' + menu[i] + "  " + price[i]
 
-    return '\n\n' + foodlist
+    return '\n' + foodlist
 
 def g_menu(type):
     req = urllib.request.Request("http://m.sejong.ac.kr/front/cafeteria.do?type1=3", headers={'User-Agent': 'Mozilla/5.0'})
