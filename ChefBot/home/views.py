@@ -63,7 +63,7 @@ def message(request):
         elif place == '개발자':
             return JsonResponse({ #return 밑에는 공통어
                 "message": {
-                    "text": '인터페이스30기\n\n전자정보통신공학과\n강동민 @riyenas0925\n바이오산업자원공학과\n이경은 @2kyung19'
+                    "text": '인터페이스30기\n전자정보통신공학과\n강동민 @riyenas0925\n바이오산업자원공학과\n이경은 @2kyung19'
                 }
             })
 
@@ -115,7 +115,7 @@ def h_menu():
     for i in range(0,len(menu)):
         foodlist += menu[i] + "  " + price[i] + "\n"
 
-    return foodlist
+    return '\n\n' + foodlist
 
 def g_menu(type):
     req = urllib.request.Request("http://m.sejong.ac.kr/front/cafeteria.do?type1=3", headers={'User-Agent': 'Mozilla/5.0'})
