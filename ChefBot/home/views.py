@@ -23,7 +23,7 @@ def message(request):
     return_str = return_json_str['content'] #버튼 항목중 무엇을 눌렀는가
     
     def get_menu(place):#변수return_Str를 써야하므로 함수message 안에 같이 넣어줌
-        repeat="✧.◟(ˊᗨˋ)◞.✧\n" + date_s(return_str) + return_str + ' 메뉴다냥\n\n'
+        repeat="✧.◟(ˊᗨˋ)◞.✧\n" + date_s(return_str) + return_str + ' 메뉴다냥'
         #repeat == 반복스트링
 
         if place.find('학생회관') != -1:
@@ -154,11 +154,11 @@ def g_menu(type):
             foodlist_day[cnt-1] = temp
             temp=""
 
-            temp += day[cnt] + '\n\n' + time(i) + menu[i]
+            temp += '\n\n' + day[cnt] + '\n\n' + time(i) + menu[i]
             cnt += 1
 
         else:
-            temp += '\n' + time(i) + menu[i] + '\n---------------\n\n'
+            temp += '\n' + time(i) + menu[i] + '\n---------------'
 
     foodlist_all = foodlist_day[0] + foodlist_day[1] + foodlist_day[2] + foodlist_day[3] + foodlist_day[4]
 
