@@ -128,66 +128,57 @@ def g_menu():
             foodlist += '\n' + time(i) + menu[i] + '\n---------------\n\n'
     
     return foodlist
-
+    
 def u_menu():
-    def keyboard(request):
-        {
-            "type":"buttons",
-            "buttons":["월","화","수","목","금","토"]
-        }
-
-    @csrf_exempt
-
-    def message(request):
-        message = ((request.body).decode('utf-8'))
-        return_json_str = json.loads(message)
-        return_str = return_json_str['content']
-
-        return JsonResponse({
-            "message": {
-                "text": parsing_u()
-                }
-            })
-
-
-    def parsing_u():
-        req = urllib.request.Request("http://m.sejong.ac.kr/front/cafeteria.do?type1=2", headers={'User-Agent': 'Mozilla/5.0'})
-        con = urllib.request.urlopen(req)
-        text = con.read().decode("utf8")
-
-        soup = BeautifulSoup(text, 'html.parser')
-
-        food=[]
-        day_d=[]
-
-        def parsing(seq):
-            day = soup.find_all('tr',{'class':seq})
-            a=day[0].find_all('div',{'class':'th'})
-            b = a[0].get_text()
-            day_d.append(b)
+    message = ((request.body).decode('utf-8'))
+    return_json_str = json.loads(message)
+    umenu_str = return_json_str['content'] #버튼 항목중 무엇을 눌렀는가
     
-            for n in day:
-                day_f=n.find_all('div',{'class':'td'})
-    
-                a=day_f[0].get_text().replace("\t","").replace("\r","")
-                food.append(a)
-                
-        parsing("seq-01")
-        parsing("seq-02")          
-        parsing("seq-03")
-        parsing("seq-04")
-        parsing("seq-05")
-        parsing("seq-06")
+    req = urllib.request.Request("http://m.sejong.ac.kr/front/cafeteria.do?type1=2", headers={'User-Agent': 'Mozilla/5.0'})
+    con = urllib.request.urlopen(req)
+    text = con.read().decode("utf8")
 
-        printlist=""
+    soup = BeautifulSoup(text, 'html.parser')
+
+    food=[]
+    day_d=[]
+
+    def parsing(seq):
+        day = soup.find_all('tr',{'class':seq})
+        a=day[0].find_all('div',{'class':'th'})
+        b = a[0].get_text()
+        day_d.append(b)
+    
+        for n in day:
+            day_f=n.find_all('div',{'class':'td'})
+    
+            a=day_f[0].get_text().replace("\t","").replace("\r","")
+            food.append(a)
+
         
-        dayday=['월','화','수','목','금','토']
+    parsing("seq-01")
+    parsing("seq-02")          
+    parsing("seq-03")
+    parsing("seq-04")
+    parsing("seq-05")
+    parsing("seq-06")
+    dayday=['월','화','수','목','금','토']
+    printlist=""
+    
+    for i in range(0,5):
+        if umenu_str==dayday[i]:
+            printlist+="-------------\n"+day_d[i]+"\n-------------"+"\n<프리미엄>"+food[5*i]+"\n<일품>"+food[5*i+1]+"\n<양식>"+food[5*i+2]+"\n<한식>"+food[5*i+3]+"\n<분식>"+food[5*i+4]
+        #0~4 월 5~9 화 10~14 수 15~19 목 20~24 금 25~29 토
+        #프리미엄 +0 일품+1 양식+2 한식+3 분식+4
+        #시작 5*i
 
-        for i in range(0,6):
-            if return_str==dayday[i]:
-                printlist="-------------\n"+day_d[i]+"\n-------------"+"\n<프리미엄>"+food[5*i]+"\n<일품>"+food[5*i+1]+"\n<양식>"+food[5*i+2]+"\n<한식>"+food[5*i+3]+"\n<분식>"+food[5*i+4]
+    return JsonResponse({ #return 밑에는 공통어
+        "message": {
+            "text": printlist
+        },
+        "keyboard":["월","화","수","목","금","토"]
+    })
 
-        return printlist
 
 def weather():
     params = {"version": "1", "city":"서울", "county":"광진구","village":"군자동"}
