@@ -34,10 +34,10 @@ def message(request):
             #군자 파싱 함수 만들면 뒤에 이어주면 됨
 
         elif place=='우정당':
-            return repeat+u_menu()
+            return "✧.◟(ˊᗨˋ)◞.✧\n요일을 선택하라냥!\nex)월요일 또는 월"
 
         elif place=='날씨':
-            return "✧.◟(ˊᗨˋ)◞.✧\n" + '우리집 날씨다냥\n'+ weather()
+            return "✧*｡٩(ˊᗜˋ*)و✧*｡ \n" + '우리집 날씨다냥\n'+ weather()
 
         else:
             return "٩(๑`^´๑)۶\n잘못입력했다냥!\n다시 입력하라냥!\n\n명령어\n*학생회관\n*군자관\n*우정당\n*미세먼지\n*날씨\n*지하철\n*공지사항" #사용자입력오류
@@ -93,7 +93,7 @@ def g_menu():
     req = urllib.request.Request("http://m.sejong.ac.kr/front/cafeteria.do?type1=3", headers={'User-Agent': 'Mozilla/5.0'})
     response = urllib.request.urlopen(req)
     text = response.read().decode("utf8")
-
+ 
     soup = BeautifulSoup(text, 'html.parser')
 
     day = soup.find_all("th",{'rowspan':'2'})
@@ -132,6 +132,7 @@ def g_menu():
 
 
 def u_menu():
+
     req = urllib.request.Request("http://m.sejong.ac.kr/front/cafeteria.do?type1=2", headers={'User-Agent': 'Mozilla/5.0'})
     con = urllib.request.urlopen(req)
     text = con.read().decode("utf8")
