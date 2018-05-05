@@ -30,7 +30,11 @@ def message(request):
             return repeat+h_menu()
 
         elif place.find('군자관') != -1:
-            return repeat+g_menu(return_str)
+            return JsonResponse({ #return 밑에는 공통어
+                "message": {
+                    "text": repeat+g_menu(return_str)
+                }
+            }) 
             #군자 파싱 함수 만들면 뒤에 이어주면 됨
 
         elif place.find('우정당') != -1:
@@ -40,12 +44,16 @@ def message(request):
                 },
                 "keyboard":{
                     "type" : "buttons",
-                    "buttons" : ["학생회관", "군자관", "우정당","날씨", "입력오류테스트"]
+                    "buttons" : ["우정당 월","우정당 화","우정당 수","우정당 목","우정당 금"]
                 }
             })
 
         elif place.find('날씨') != -1:
-            return "✧*｡٩(ˊᗜˋ*)و✧*｡ \n" + '우리집 날씨다냥\n'+ weather()
+            
+            return JsonResponse({ #return 밑에는 공통어
+                "message": {
+                    "text": '✧*｡٩(ˊᗜˋ*)و✧*｡ \n' + '우리집 날씨다냥\n'+ weather()
+                }
 
         else:
             return "٩(๑`^´๑)۶\n잘못입력했다냥!\n다시 입력하라냥!\n\n명령어\n*학생회관\n*군자관\n*우정당\n*미세먼지\n*날씨\n*지하철\n*공지사항" #사용자입력오류
