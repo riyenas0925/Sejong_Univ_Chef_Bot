@@ -181,6 +181,6 @@ def weather():
     wind = weather[0]["wind"]["wspd"]
     time = weather[0]["timeObservation"]
 
-    printweather = '날씨 : ' + Sky + '\n' + '풍속 : ' + Wind + 'm/s'
+    printweather = '날씨 : ' + sky + '\n' + '풍속 : ' + wind + 'm/s'
 
     return printweather
