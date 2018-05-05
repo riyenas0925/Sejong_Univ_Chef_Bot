@@ -26,7 +26,7 @@ def message(request):
     def get_menu(place):#변수return_Str를 써야하므로 함수message 안에 같이 넣어줌
         repeat="✧.◟(ˊᗨˋ)◞.✧\n" + date_s(return_str) + return_str + ' 메뉴다냥\n\n'
         #repeat == 반복스트링
-        if place=='학생회관':
+        if place.find('학생회관') != -1:
             return repeat+h_menu()
 
         elif place.find('군자관') != -1:
@@ -36,15 +36,15 @@ def message(request):
         elif place.find('우정당') != -1:
             return JsonResponse({ #return 밑에는 공통어
                 "message": {
-                "text": "✧.◟(ˊᗨˋ)◞.✧\n요일을 선택하라냥!\nex)월요일 또는 월\n"
+                    "text": "✧.◟(ˊᗨˋ)◞.✧\n요일을 선택하라냥!\nex)월요일 또는 월\n"
                 },
                 "keyboard":{
                     "type" : "buttons",
-                    "buttons" : ["월","화","수","목","금","토"]
+                    "buttons" : ["학생회관", "군자관", "우정당","날씨", "입력오류테스트"]
                 }
             })
 
-        elif place=='날씨':
+        elif place.find('날씨') != -1:
             return "✧*｡٩(ˊᗜˋ*)و✧*｡ \n" + '우리집 날씨다냥\n'+ weather()
 
         else:
