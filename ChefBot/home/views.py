@@ -63,14 +63,14 @@ def message(request):
         elif place == '개발자':
             return JsonResponse({ #return 밑에는 공통어
                 "message": {
-                    "text": '✧*｡٩(ˊᗜˋ*)و✧*｡ \n' + '우리집 날씨다냥\n'+ weather()
+                    "text": "인터페이스 30기 @riyenas0925\n인터페이스 30기 @2kyung19"
                 }
             })
 
         else:
             return JsonResponse({ #return 밑에는 공통어
                 "message": {
-                    "text": "인터페이스 30기 @riyenas0925\n인터페이스 30기 @2kyung19"
+                    "text": '✧*｡٩(ˊᗜˋ*)و✧*｡ \n' + '우리집 날씨다냥\n'+ weather()
                 }
             })
              #사용자입력오류
