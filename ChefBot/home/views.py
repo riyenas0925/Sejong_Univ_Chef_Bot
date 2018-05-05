@@ -36,7 +36,7 @@ def message(request):
             return repeat+u_menu()
 
         elif place=='날씨':
-            return "✧.◟(ˊᗨˋ)◞.✧\n" + '날씨다냥'+ weather()
+            return "✧.◟(ˊᗨˋ)◞.✧\n" + '날씨다냥\n'+ weather()
 
         else:
             return "٩(๑`^´๑)۶\n잘못입력했다냥!\n다시 입력하라냥!\n\n명령어\n*학생회관\n*군자관\n*우정당\n*미세먼지\n*날씨\n*지하철\n*공지사항" #사용자입력오류
@@ -176,7 +176,7 @@ def weather():
 
     data = json.loads(response.text)
 
-    weather = data["weather"]["ㅙㅕ"]
+    weather = data["weather"]["minutely"]
     sky = weather[0]["sky"]["name"]
     wind = weather[0]["wind"]["wspd"]
     time = weather[0]["timeObservation"]
