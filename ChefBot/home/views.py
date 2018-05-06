@@ -23,7 +23,8 @@ def message(request):
     return_str = return_json_str['content'] #버튼 항목중 무엇을 눌렀는가
     
     def get_menu(place):#변수return_Str를 써야하므로 함수message 안에 같이 넣어줌
-        repeat="✧.◟(ˊᗨˋ)◞.✧\n" + date_s(return_str) + return_str + ' 메뉴다냥'
+        repeat="✧.◟(ˊᗨˋ)◞.✧\n" + date_s(return_str) + return_str + ' 메뉴다냥\n'
+        end_repeat="================="+"٩(๑>∀<๑)۶\n맛있게 먹으라냥~"
         #repeat == 반복스트링
 
         if place.find('학생회관') != -1:
@@ -44,12 +45,15 @@ def message(request):
         elif place.find('우정당') != -1:
             return JsonResponse({ #return 밑에는 공통어
                 "message": {
-                    "text": "✧.◟(ˊᗨˋ)◞.✧\n요일을 선택하라냥!\nex)월요일 또는 월\n"
-                },
-                "keyboard":{
-                    "type" : "buttons",
-                    "buttons" : ["우정당 월","우정당 화","우정당 수","우정당 목","우정당 금"]
+                    "text": repeat+u_menu(return_str)
                 }
+            })
+        elif place.find('배고파') != -1:
+            return JsonResponse({
+                "message": {
+                    "text": "(๑˃̵ᴗ˂̵)و "+"\n우리집 밥 진짜 맛있따냥!\n\n학생회관,군자관,우정당\n메뉴를 알려줄 수 있다냥~\n\nex)\n학생회관,군자관,군자관 목,우정당 월"
+                }
+
             })
 
         elif place.find('날씨') != -1:
@@ -70,7 +74,7 @@ def message(request):
         else:
             return JsonResponse({ #return 밑에는 공통어
                 "message": {
-                    "text": '٩(๑`^´๑)۶\n잘못입력했다냥!\n다시 입력하라냥!\n\n명령어 - 식당\n*학생회관\n*군자관\n*우정당\nex)학생회관,군자관,군자관 목\n\n명령어 - 날씨\n*미세먼지\n*날씨\n\n명령어 - 기타\n*지하철\n*공지사항\n*개발자'
+                    "text": '٩(๑`^´๑)۶\n명령어는 정해져있다냥~!\n\n명령어 - 식당\n*학생회관\n*군자관\n*우정당\nex)학생회관,군자관,군자관 목\n\n명령어 - 날씨\n*미세먼지\n*날씨\n\n명령어 - 기타\n*지하철\n*공지사항\n*개발자'
                 }
             })
              #사용자입력오류
@@ -90,7 +94,6 @@ def date_s(place): #학생회관 클릭 -> 요일 출력 //이 외-> 출력x
         return ""
 
 def h_menu():
-
     req = urllib.request.Request("http://m.sejong.ac.kr/front/cafeteria.do", headers={'User-Agent': 'Mozilla/5.0'})
     con = urllib.request.urlopen(req)
     text = con.read().decode("utf8")
@@ -180,11 +183,7 @@ def g_menu(type):
     else:
         return foodlist_all
     
-def u_menu():
-    message = ((request.body).decode('utf-8'))
-    return_json_str = json.loads(message)
-    umenu_str = return_json_str['content'] #버튼 항목중 무엇을 눌렀는가
-    
+def u_menu(type):
     req = urllib.request.Request("http://m.sejong.ac.kr/front/cafeteria.do?type1=2", headers={'User-Agent': 'Mozilla/5.0'})
     con = urllib.request.urlopen(req)
     text = con.read().decode("utf8")
@@ -206,22 +205,26 @@ def u_menu():
             a=day_f[0].get_text().replace("\t","").replace("\r","")
             food.append(a)
 
-        
     parsing("seq-01")
     parsing("seq-02")          
     parsing("seq-03")
     parsing("seq-04")
     parsing("seq-05")
     parsing("seq-06")
-    dayday=['월','화','수','목','금','토']
+    dayday=['우정당 월','우정당 화','우정당 수','우정당 목','우정당 금','우정당 토']
+    dayday1=['우정당 월요일','우정당 화요일','우정당 수요일','우정당 목요일','우정당 금요일','우정당 토요일']
     printlist=""
     
     for i in range(0,5):
-        if umenu_str==dayday[i]:
+        if type==dayday[i] or type==dayday1[i]:
             printlist+="-------------\n"+day_d[i]+"\n-------------"+"\n<프리미엄>"+food[5*i]+"\n<일품>"+food[5*i+1]+"\n<양식>"+food[5*i+2]+"\n<한식>"+food[5*i+3]+"\n<분식>"+food[5*i+4]
         #0~4 월 5~9 화 10~14 수 15~19 목 20~24 금 25~29 토
         #프리미엄 +0 일품+1 양식+2 한식+3 분식+4
         #시작 5*i
+    
+    if printlist=="":
+        printlist="\n(*ૂ❛ัᴗ❛ั*ૂ)\n우정당은 요일까지 적어달라냥!\n\nex)우정당 월요일, 우정당 화"
+
     return printlist
 
 
