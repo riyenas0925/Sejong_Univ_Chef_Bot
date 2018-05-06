@@ -278,6 +278,6 @@ def dust():
         else:
             return '매우나쁨'
 
-    printdust = '미세먼지(pm10) : ' + pm10value + '㎍/㎥\n' '등급 : ' + grade(pm10grade) + '\npm2.5(초미세먼지) : ' + pm25value + '㎍/㎥\n' + '등급 : ' + grade(pm25grade)
+    printdust = '미세먼지(pm10) : ' + pm10value + '㎍/㎥\n' '등급 : ' + grade(pm10grade) + '\n초미세먼지(pm2.5) : ' + pm25value + '㎍/㎥\n' + '등급 : ' + grade(pm25grade)
     
     return printdust
