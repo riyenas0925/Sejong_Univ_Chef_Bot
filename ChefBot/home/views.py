@@ -86,7 +86,6 @@ def date_s(place): #학생회관 클릭 -> 요일 출력 //이 외-> 출력x
         return ""
 
 def h_menu():
-
     req = urllib.request.Request("http://m.sejong.ac.kr/front/cafeteria.do", headers={'User-Agent': 'Mozilla/5.0'})
     con = urllib.request.urlopen(req)
     text = con.read().decode("utf8")
@@ -198,7 +197,6 @@ def u_menu(type):
             a=day_f[0].get_text().replace("\t","").replace("\r","")
             food.append(a)
 
-        
     parsing("seq-01")
     parsing("seq-02")          
     parsing("seq-03")
@@ -215,8 +213,10 @@ def u_menu(type):
         #0~4 월 5~9 화 10~14 수 15~19 목 20~24 금 25~29 토
         #프리미엄 +0 일품+1 양식+2 한식+3 분식+4
         #시작 5*i
-        else:
-            printlist="(*ૂ❛ัᴗ❛ั*ૂ)\n우정당은 요일까지 적어달라냥!\n\nex)우정당 월요일, 우정당 화"
+    
+    if printlist=="":
+        printlist="\n(*ૂ❛ัᴗ❛ั*ૂ)\n우정당은 요일까지 적어달라냥!\n\nex)우정당 월요일, 우정당 화"
+        
     return printlist
 
 
