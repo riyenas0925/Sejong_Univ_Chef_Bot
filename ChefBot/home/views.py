@@ -57,7 +57,6 @@ def message(request):
             })
 
         elif place.find('날씨') != -1:
-            
             return JsonResponse({ #return 밑에는 공통어
                 "message": {
                     "text": '✧*｡٩(ˊᗜˋ*)و✧*｡ \n' + '우리집 날씨다냥\n\n'+ weather()
@@ -68,7 +67,7 @@ def message(request):
             
             return JsonResponse({ #return 밑에는 공통어
                 "message": {
-                    "text": '✧*｡٩(ˊᗜˋ*)و✧*｡ \n' + '우리집 미세먼지다냥\nc참고하라냥\n\n'+ dust()
+                    "text": '✧*｡٩(ˊᗜˋ*)و✧*｡ \n' + '우리집 미세먼지다냥\n참고하라냥\n\n'+ dust()
                 }
             })
 
