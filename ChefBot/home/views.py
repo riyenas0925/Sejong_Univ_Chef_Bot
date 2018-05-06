@@ -24,6 +24,7 @@ def message(request):
     
     def get_menu(place):#변수return_Str를 써야하므로 함수message 안에 같이 넣어줌
         repeat="✧.◟(ˊᗨˋ)◞.✧\n" + date_s(return_str) + return_str + ' 메뉴다냥\n'
+        end_repeat="================="+"٩(๑>∀<๑)۶\n맛있게 먹으라냥~"
         #repeat == 반복스트링
 
         if place.find('학생회관') != -1:
@@ -46,6 +47,13 @@ def message(request):
                 "message": {
                     "text": repeat+u_menu(return_str)
                 }
+            })
+        elif place.find('배고파') != -1:
+            return JsonResponse({
+                "message": {
+                    "text": "(๑˃̵ᴗ˂̵)و "+"\n우리집 밥 진짜 맛있따냥!\n\n학생회관,군자관,우정당 메뉴를\n알려줄 수 있다냥~\nex)학생회관,군자관,군자관 목,우정당 화"
+                }
+
             })
 
         elif place.find('날씨') != -1:
@@ -216,7 +224,7 @@ def u_menu(type):
     
     if printlist=="":
         printlist="\n(*ૂ❛ัᴗ❛ั*ૂ)\n우정당은 요일까지 적어달라냥!\n\nex)우정당 월요일, 우정당 화"
-        
+
     return printlist
 
 
