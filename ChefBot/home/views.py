@@ -78,6 +78,16 @@ def message(request):
                 }
             })
 
+        elif place =='공지' or place=='공지사항':
+            return JsonResponse({
+                "message":{
+                    "text":"⁽⁽◝( ˙ ꒳ ˙ )◜⁾⁾\n세종대학교 공지사항이라냥!\n최근 5개까지만 올려준다냥\n"+notice()
+
+                }
+
+
+            })
+
         else:
             return JsonResponse({ #return 밑에는 공통어
                 "message": {
@@ -281,3 +291,36 @@ def dust():
     printdust = '미세먼지(pm10) : ' + pm10value + '㎍/㎥\n' '등급 : ' + grade(pm10grade) + '\n초미세먼지(pm2.5) : ' + pm25value + '㎍/㎥\n' + '등급 : ' + grade(pm25grade)
     
     return printdust
+
+def notice():
+    req = urllib.request.Request("http://board.sejong.ac.kr/boardlist.do?bbsConfigFK=333", headers={'User-Agent': 'Mozilla/5.0'})
+    response = urllib.request.urlopen(req)
+    text = response.read().decode("utf8")
+
+    soup = BeautifulSoup(text, 'html.parser')
+
+    all_infor=soup.find_all('tbody')
+    
+    subject = all_infor[0].find_all('td',{'class':"subject"})
+    writer=all_infor[0].find_all('td',{'class':"writer"})
+    date=all_infor[0].find_all('td',{'class':"date"})
+
+    s_str=[]
+    w_str=[]
+    d_str=[]
+    for i in range(0,5):
+        n = subject[i].get_text().replace("\r","").replace("\t","").replace("\n","")
+        s_str.append(n)
+        m = writer[i].get_text().replace("\r","").replace("\t","")
+        w_str.append(m)
+        l = date[i].get_text().replace("\r","").replace("\t","")
+        d_str.append(l)
+
+    iflist=""
+
+    for i in range(0,len(s_str)):
+        iflist += s_str[i] + "\n" + w_str[i]+"\n"+d_str[i]+"\n\n"
+
+    iflist += "자세한 내용:\nhttp://board.sejong.ac.kr/boardlist.do?bbsConfigFK=333"
+    
+    return iflist
