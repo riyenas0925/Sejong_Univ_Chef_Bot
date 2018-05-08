@@ -81,17 +81,18 @@ def message(request):
         elif place =='공지' or place=='공지사항':
             return JsonResponse({
                 "message":{
-                    "text":"⁽⁽◝( ˙ ꒳ ˙ )◜⁾⁾\n세종대학교 공지사항이라냥!\n최근 5개까지만 올려준다냥\n"+notice()
-
-                }
-
-
+                    "text":"⁽⁽◝( ˙ ꒳ ˙ )◜⁾⁾\n세종대학교 공지사항이라냥!\n최근 5개까지만 올려준다냥\n\n"+notice()
+                },
+                "message_button": {
+                    "label": "세종대학교 공지 바로가기",
+                    "url": "http://board.sejong.ac.kr/boardlist.do?bbsConfigFK=333"
+                 }
             })
 
         else:
             return JsonResponse({ #return 밑에는 공통어
                 "message": {
-                    "text": '٩(๑`^´๑)۶\n키워드를 넣어서 물어보라냥~!\n\n-키워드-\n*학생회관\n*군자관\n*우정당\nex)학생회관,군자관 목\n\n -키워드-\n*미세먼지\n*날씨\nex)오늘 날씨 어때?,날씨\n\n-키워드-\n*지하철\n*공지사항\n*개발자'
+                    "text": '٩(๑`^´๑)۶\n키워드를 넣어서 물어보라냥~!\n\n-키워드-\n*학생회관\n*군자관\n*우정당\nex)학생회관,군자관 목\n\n -키워드-\n*미세먼지\n*날씨\nex)오늘 날씨 어때?,날씨\n\n-키워드-\n*공지사항\n*개발자'
                 }
             })
              #사용자입력오류
@@ -321,6 +322,4 @@ def notice():
     for i in range(0,len(s_str)):
         iflist += s_str[i] + "\n" + w_str[i]+"\n"+d_str[i]+"\n\n"
 
-    iflist += "자세한 내용:\nhttp://board.sejong.ac.kr/boardlist.do?bbsConfigFK=333"
-    
     return iflist
