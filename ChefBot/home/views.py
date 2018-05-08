@@ -321,6 +321,6 @@ def notice():
     iflist=""
 
     for i in range(0,len(s_str)):
-        iflist += s_str[i] + "\n" + w_str[i]+"\n"+d_str[i]+"\n\n"
+        iflist += "("+(i+1)+") "+s_str[i] + "\n" + w_str[i]+"\n"+d_str[i]+"\n\n"
 
     return iflist
