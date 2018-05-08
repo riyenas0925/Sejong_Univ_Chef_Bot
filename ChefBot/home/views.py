@@ -81,12 +81,13 @@ def message(request):
         elif place =='공지' or place=='공지사항':
             return JsonResponse({
                 "message":{
-                    "text":"⁽⁽◝( ˙ ꒳ ˙ )◜⁾⁾\n세종대학교 공지사항이라냥!\n최근 5개까지만 올려준다냥\n\n"+notice()
-                },
-                "message_button": {
-                    "label": "세종대학교 공지 바로가기",
-                    "url": "http://board.sejong.ac.kr/boardlist.do?bbsConfigFK=333"
-                 }
+                    "text":"⁽⁽◝( ˙ ꒳ ˙ )◜⁾⁾\n세종대학교 공지사항이라냥!\n최근 5개까지만 올려준다냥\n\n"+notice(),
+                
+                    "message_button": {
+                        "label": "세종대학교 공지 바로가기",
+                        "url": "http://board.sejong.ac.kr/boardlist.do?bbsConfigFK=333"
+                    }
+                }
             })
 
         else:
