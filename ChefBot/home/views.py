@@ -24,20 +24,20 @@ def message(request):
     
     def get_menu(place):#변수return_Str를 써야하므로 함수message 안에 같이 넣어줌
         repeat="✧.◟(ˊᗨˋ)◞.✧\n" + date_s(return_str) + return_str + ' 메뉴다냥\n'
-        end_repeat="================="+"٩(๑>∀<๑)۶\n맛있게 먹으라냥~"
+        end_repeat="\n================="+"٩(๑>∀<๑)۶다른 명령어는\n아무말이나 해보라냥~"
         #repeat == 반복스트링
 
         if place.find('학생회관') != -1:
             return JsonResponse({ #return 밑에는 공통어
                 "message": {
-                    "text": repeat+h_menu()
+                    "text": repeat+h_menu()+end_repeat
                 }
             })
 
         elif place.find('군자관') != -1:
             return JsonResponse({ #return 밑에는 공통어
                 "message": {
-                    "text": repeat+g_menu(return_str)
+                    "text": repeat+g_menu(return_str)+end_repeat
                 }
             }) 
             #군자 파싱 함수 만들면 뒤에 이어주면 됨
@@ -45,7 +45,7 @@ def message(request):
         elif place.find('우정당') != -1:
             return JsonResponse({ #return 밑에는 공통어
                 "message": {
-                    "text": repeat+u_menu(return_str)
+                    "text": repeat+u_menu(return_str)+end_repeat
                 }
             })
         elif place.find('배고파') != -1:
@@ -59,7 +59,7 @@ def message(request):
         elif place.find('날씨') != -1:
             return JsonResponse({ #return 밑에는 공통어
                 "message": {
-                    "text": '✧*｡٩(ˊᗜˋ*)و✧*｡ \n' + '우리집 날씨다냥\n\n'+ weather()
+                    "text": '✧*｡٩(ˊᗜˋ*)و✧*｡ \n' + '우리집 날씨다냥\n\n'+ weather()+end_repeat
                 }
             })
 
@@ -67,14 +67,14 @@ def message(request):
             
             return JsonResponse({ #return 밑에는 공통어
                 "message": {
-                    "text": '✧*｡٩(ˊᗜˋ*)و✧*｡ \n' + '우리집 미세먼지다냥\n참고하라냥\n\n'+ dust()
+                    "text": '✧*｡٩(ˊᗜˋ*)و✧*｡ \n' + '우리집 미세먼지다냥\n참고하라냥\n\n'+ dust()+end_repeat
                 }
             })
 
-        elif place == '개발자':
+        elif place == '개발자' or place=='집사':
             return JsonResponse({ #return 밑에는 공통어
                 "message": {
-                    "text": "*ଘ(੭*ˊᵕˋ)੭* ੈ♡‧₊˚\n세종냥이 집사라냥!\n\n" +"-------------------\n전자정보통신공학과\n-------------------\n♡⁺◟강동민◞⁺♡\n  @riyenas0925\n\n"+"-------------------\n바이오산업자원공학과\n-------------------\n✧*｡이경은✧*｡ \n  @2kyung19"
+                    "text": "*ଘ(੭*ˊᵕˋ)੭* ੈ♡‧₊˚\n세종냥이 집사라냥!\n\n" +"-------------------\n전자정보통신공학과\n-------------------\n♡⁺◟강동민◞⁺♡\n  @riyenas0925\n\n"+"-------------------\n바이오산업자원공학과\n-------------------\n✧*｡이경은✧*｡ \n  @2kyung19"+end_repeat
                 }
             })
 
