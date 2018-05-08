@@ -24,7 +24,7 @@ def message(request):
     
     def get_menu(place):#변수return_Str를 써야하므로 함수message 안에 같이 넣어줌
         repeat="✧.◟(ˊᗨˋ)◞.✧\n" + date_s(return_str) + return_str + ' 메뉴다냥\n'
-        end_repeat="\n================="+"٩(๑>∀<๑)۶다른 명령어는\n아무말이나 해보라냥~"
+        end_repeat="\n================="+"\n٩(๑>∀<๑)۶다른 명령어는\n아무말이나 해보라냥~"
         #repeat == 반복스트링
 
         if place.find('학생회관') != -1:
