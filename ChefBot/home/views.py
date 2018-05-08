@@ -320,7 +320,8 @@ def notice():
 
     iflist=""
 
+    num=["(1) ","(2) ","(3) ","(4) ","(5) "]
     for i in range(0,len(s_str)):
-        iflist += "("+(i+1)+") "+s_str[i] + "\n" + w_str[i]+"\n"+d_str[i]+"\n\n"
+        iflist += num[i]+s_str[i] + "\n" + w_str[i]+"\n"+d_str[i]+"\n\n"
 
     return iflist
