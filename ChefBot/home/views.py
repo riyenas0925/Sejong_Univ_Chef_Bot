@@ -96,8 +96,7 @@ def message(request):
                     "text":"*ଘ(੭*ˊᵕˋ)੭* ੈ♡‧₊˚\n세종대학교\n컴퓨터 중앙 학술동아리\n인터페이스라냥~\n\nhttps://sejong-interface.github.io/"
 
                     }
-                }
-
+            
             })
 
         else:
