@@ -93,7 +93,8 @@ def message(request):
         elif place =='인터페이스' or place == 'interface':
             return JsonResponse({
                 "message":{
-                    "text":"*ଘ(੭*ˊᵕˋ)੭* ੈ♡‧₊˚\n세종대학교\n컴퓨터 중앙 학술동아리\n인터페이스라냥~"+ "https://sejong-interface.github.io/"
+                    "text":"*ଘ(੭*ˊᵕˋ)੭* ੈ♡‧₊˚\n세종대학교\n컴퓨터 중앙 학술동아리\n인터페이스라냥~\n\nhttps://sejong-interface.github.io/"
+
                     }
                 }
 
