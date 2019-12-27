@@ -1,4 +1,8 @@
 <h1 align="center">Sejong Univ Chef Bot  :joy_cat: </h1>
+
+![date](https://img.shields.io/badge/Project_Start_Date-2018--05--01-blue)
+![user count](https://img.shields.io/badge/User_Count-121-green)
+
 <p align="center">
   <img src="https://user-images.githubusercontent.com/32615702/71518315-929bbd00-28f5-11ea-8270-2ccd38f72422.gif">
 </p>
