@@ -1,6 +1,7 @@
 <h1 align="center">Sejong Univ Chef Bot  :joy_cat: </h1>
-
-![2019_12_27-19_40](https://user-images.githubusercontent.com/32615702/71514366-94f41c00-28e1-11ea-983b-f922a2e2003b.gif)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/32615702/71514366-94f41c00-28e1-11ea-983b-f922a2e2003b.gif">
+</p>
 
 현재 [카카오 API형 스마트 채팅](https://github.com/plusfriend/auto_reply) 이 2018년 12월 3일 카카오 i 오픈빌더 오픈에 따라 중단됨으로서 세종대학교 학식봇인 세종냥이는 2019년 12월 31일 까지 사용하실수 있습니다
 
